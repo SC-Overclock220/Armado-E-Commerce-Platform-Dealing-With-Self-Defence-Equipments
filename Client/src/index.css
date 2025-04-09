@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@layer utilities{
+
+
+  .bg-armado-olive{
+
+    @apply bg-[#0D2502] text-white
+  }
+}
