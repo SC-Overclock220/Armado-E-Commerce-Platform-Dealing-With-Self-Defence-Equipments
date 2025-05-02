@@ -2,18 +2,15 @@ import React from "react";
 import Header from "../Common/Header";
 
 const UserLayout = () => {
-  return <div>
+  return (
+    <>
+      {/* Header */}
 
+      <Header />
 
-    {/* Header Component */}
-
-    <Header/>
-
-    {/* Main Component */}
-
-
-    {/* Footer */}
-  </div>;
+      {/* Main Component */}
+    </>
+  );
 };
 
 export default UserLayout;
