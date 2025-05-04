@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import { FaRegUser, FaCartShopping, FaBars } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import CartDrawer from "./CartDrawer";
+import CartDrawer from "../Cart/CartDrawer";
+import NavbarDrawer from "./NavbarDrawer";
 
 const Navbar = () => {
-  const [openCartDrawer, setOpenCartDrawer] = useState(true);
+  const [openCartDrawer, setOpenCartDrawer] = useState(false);
+  const [openNavbarDrawer, setOpenNavbarDrawer] = useState(false);
 
   const toggleCartDrawer = () => {
     setOpenCartDrawer(!openCartDrawer);
+  };
+
+  const toggleNavbarDrawer = () => {
+    setOpenNavbarDrawer(!openNavbarDrawer);
   };
   return (
     <>
@@ -23,7 +29,7 @@ const Navbar = () => {
 
         {/* Navigation Links */}
 
-        <div className="hidden md:flex space-x-4">
+        <div className="hidden lg:flex space-x-4">
           <Link to="#" className="armado-navlinks">
             Collection
           </Link>
@@ -63,7 +69,7 @@ const Navbar = () => {
             <SearchBar className="" />
           </div>
 
-          <button className="block md:hidden">
+          <button className="block lg:hidden" onClick={toggleNavbarDrawer}>
             <FaBars className="h-6 w-6 text-gray-700" />
           </button>
         </div>
@@ -72,6 +78,13 @@ const Navbar = () => {
       <CartDrawer
         openCartDrawer={openCartDrawer}
         toggleCartDrawer={toggleCartDrawer}
+      />
+
+      {/* Mobile Navigation */}
+
+      <NavbarDrawer
+        openNavbarDrawer={openNavbarDrawer}
+        toggleNavbarDrawer={toggleNavbarDrawer}
       />
     </>
   );
