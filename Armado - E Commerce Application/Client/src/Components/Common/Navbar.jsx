@@ -43,7 +43,7 @@ const Navbar = () => {
             Accessories
           </Link>
           <Link to="#" className="armado-navlinks">
-            Combat Gears
+            Adventure Gear
           </Link>
         </div>
 

@@ -53,7 +53,7 @@ const NavbarDrawer = ({ openNavbarDrawer, toggleNavbarDrawer }) => {
             onClick={toggleNavbarDrawer}
             className="block text-gray-600 hover:text-black "
           >
-            Combat Gears
+           Adventure Gears
           </Link>
         </nav>
       </div>

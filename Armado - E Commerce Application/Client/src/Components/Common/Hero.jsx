@@ -20,7 +20,7 @@ const Hero = () => {
             <p className="text-sm font-medium  tracking-wide md:text-lg mb-6">
               Explore Our Rashtriya Rifles Inspired Collection
             </p>
-            <Link className="bg-white text-gray-950 px-6 py-2 rounded-sm text-lg">
+            <Link className="bg-white text-gray-950 px-6 py-2 rounded-sm text-sm md:text-md lg:text-lg">
               Shop Now
             </Link>
           </div>
