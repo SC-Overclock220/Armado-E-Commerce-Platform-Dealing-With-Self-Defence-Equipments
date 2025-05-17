@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import Prod1 from "../../assets/Products/Prod1.png";
+import Prod2 from "../../assets/Products/Prod2.png";
+import Prod3 from "../../assets/Products/Prod3.png";
+import Prod4 from "../../assets/Products/Prod4.png";
+import Prod5 from "../../assets/Products/Prod5.png";
+import Prod6 from "../../assets/Products/Prod6.png";
 
 const latestArrivals = [
   {
@@ -11,9 +17,7 @@ const latestArrivals = [
     origin: "India",
     designed: "Kalashnikov Rifles",
     price: 85400,
-    images: [
-      { url: "https://picsum.photos/500/500?random=1", altText: "AK-203" },
-    ],
+    images: [{ url: Prod1, altText: "AK-203" }],
   },
   {
     _id: "2",
@@ -23,9 +27,7 @@ const latestArrivals = [
     origin: "Germany",
     designed: "Heckler And Koch",
     price: 90400,
-    images: [
-      { url: "https://picsum.photos/500/500?random=2", altText: "HK-416" },
-    ],
+    images: [{ url: Prod2, altText: "HK-416" }],
   },
   {
     _id: "3",
@@ -37,7 +39,7 @@ const latestArrivals = [
     price: 70600,
     images: [
       {
-        url: "https://picsum.photos/500/500?random=3",
+        url: Prod3,
         altText: "Kriss Vector",
       },
     ],
@@ -52,7 +54,7 @@ const latestArrivals = [
     price: 87600,
     images: [
       {
-        url: "https://picsum.photos/500/500?random=4",
+        url: Prod4,
         altText: "MP5-SD3",
       },
     ],
@@ -60,14 +62,14 @@ const latestArrivals = [
   {
     _id: "5",
     prodID: "WSR0005",
-    name: "Dragunoav",
+    name: "SVD Dragunoav",
     manufacturer: "Kalashnikov Rifles",
     origin: "Russia",
     designed: "Kalashnikov Rifles",
     price: 124900,
     images: [
       {
-        url: "https://picsum.photos/500/500?random=5",
+        url: Prod5,
         altText: "Dragunoav",
       },
     ],
@@ -82,12 +84,14 @@ const latestArrivals = [
     price: 144900,
     images: [
       {
-        url: "https://picsum.photos/500/500?random=6",
+        url: Prod6,
         altText: "Barret M82",
       },
     ],
   },
 ];
+
+console.log(Prod1, Prod2, Prod3);
 
 const LatestArrivals = () => {
   const scrollRef = useRef(null);
@@ -109,14 +113,15 @@ const LatestArrivals = () => {
       setCanScrollRight(rightScrollable);
     }
 
-    console.log({
-      scrollLeft: container.scrollLeft,
-      clientWidth: container.clientWidth,
-      containerScrollWidth: container.scrollWidth,
-    });
+    // console.log({
+    //   scrollLeft: container.scrollLeft,
+    //   clientWidth: container.clientWidth,
+    //   containerScrollWidth: container.scrollWidth,
+    // });
   };
 
   const scroll = (direction) => {
+    const container = scrollRef.current;
     const scrollAmt = direction === "left" ? -300 : 300;
     scrollRef.current.scrollBy({ left: scrollAmt, behaviour: "smooth" });
   };
@@ -124,7 +129,10 @@ const LatestArrivals = () => {
   useEffect(() => {
     const container = scrollRef.current;
 
-    if (container) container.addEventListener("scroll", updateScrollButtons);
+    if (container) {
+      container.addEventListener("scroll", updateScrollButtons);
+      return () => container.removeEventListener("scroll", updateScrollButtons);
+    }
   }, []);
   return (
     <section>
@@ -179,12 +187,19 @@ const LatestArrivals = () => {
               className="w-full h-[350px] md:h-[400px] lg:h-[500px] object-cover rounded-lg"
             />
 
-            <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 backdrop-blur-md text-white p-4 rounded-b-lg">
+            <div className="absolute bottom-0 left-0 right-0 bg-opacity-50  text-black p-4 rounded-b-lg">
               <Link to={`/product/${product._id}`} className="block">
                 <h4 className="font-medium">{product.name}</h4>
                 <p className="mt-1">
-                  {product.price.toLocaleString("en-IN", { currency: "INR" })}
+                  {product.price.toLocaleString("en-IN", {
+                    style: "currency",
+                    currency: "INR",
+                  })}
                 </p>
+                <p className="mt-1">
+                  {product.manufacturer} | {product.origin}
+                </p>
+                <p className="mt-1">{product.designed}</p>
               </Link>
             </div>
           </div>
